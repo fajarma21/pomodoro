@@ -1,0 +1,40 @@
+.digit {
+  --w: 24px;
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: var(--w);
+  line-height: 16px;
+  transition: all 0.5s;
+  &::after {
+    content: '';
+    display: block;
+    background: white;
+    transition: width 0.5s;
+  }
+
+  &[data-numbered]::after {
+    width: 2px;
+    height: 12px;
+    border-radius: 6px;
+  }
+
+  &[data-no-number]::after {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    margin-top: 24px;
+  }
+
+  &[data-active] {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--accent-bg);
+    &::after {
+      width: 12px;
+      background-color: var(--accent-bg);
+    }
+  }
+}

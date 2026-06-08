@@ -1,0 +1,14 @@
+@use '@/styles/breakpoint.scss' as breakpoint;
+
+.container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+
+  @include breakpoint.wh750 {
+    margin-top: 32px;
+  }
+}

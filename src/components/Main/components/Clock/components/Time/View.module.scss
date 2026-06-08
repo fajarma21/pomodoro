@@ -1,0 +1,36 @@
+@use '@/styles/breakpoint.scss' as breakpoint;
+
+@keyframes slide {
+  0% {
+    transform: translateY(-25%);
+  }
+  100% {
+    transform: translateY(25%);
+  }
+}
+
+.time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  height: 57px;
+  font-size: 3.5rem;
+  font-variant-numeric: tabular-nums;
+  margin: 24px 0 12px;
+  @include breakpoint.wh750 {
+    margin-bottom: 24px;
+  }
+
+  > div {
+    text-align: center;
+    word-break: break-all;
+    width: 30px;
+    line-height: 57px;
+
+    &.number {
+      transform: translateY(25%);
+      animation: slide 0.5s;
+    }
+  }
+}

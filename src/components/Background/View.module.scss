@@ -1,0 +1,59 @@
+.accent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: url('@/assets/accents/top-center.png') top center / 30% no-repeat;
+
+  @media screen and (min-width: 768px) {
+    background:
+      url('@/assets/accents/top-right.png') top right no-repeat,
+      url('@/assets/accents/top-left.png') top left no-repeat,
+      url('@/assets/accents/bot-left.png') bottom left no-repeat,
+      url('@/assets/accents/bot-right.png') bottom right no-repeat,
+      url('@/assets/accents/top-center.png') top center no-repeat;
+  }
+}
+
+:global {
+  .bg1,
+  .bg2,
+  .bg3 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s;
+  }
+
+  .bg1 {
+    background: radial-gradient(
+      circle at top,
+      #d10a23 25%,
+      #940815 75%,
+      #6c000a
+    );
+  }
+
+  .bg2 {
+    background: radial-gradient(
+      circle at top,
+      #f64845 25%,
+      #d53032 75%,
+      #b02326
+    );
+  }
+
+  .bg3 {
+    background: radial-gradient(
+      circle at top,
+      #3d1424 25%,
+      #2e111d 75%,
+      #1a0910
+    );
+  }
+}

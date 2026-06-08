@@ -1,0 +1,17 @@
+@use '@/styles/animation.scss' as animation;
+@use '@/styles/breakpoint.scss' as breakpoint;
+
+.pomo {
+  background: url('@/assets/accents/center.png') center / 100% no-repeat;
+  @include animation.appearFromTop;
+
+  .image {
+    display: block;
+    height: 200px;
+    margin: 0 auto 20px;
+    opacity: 0.8;
+    @include breakpoint.wh750 {
+      height: 300px;
+    }
+  }
+}

@@ -1,0 +1,78 @@
+@keyframes fadeInd {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@mixin hideTransition {
+  transition: all 0.5s;
+  &[data-hide] {
+    @content;
+    opacity: 0 !important;
+    transform: scale(0.75);
+  }
+}
+
+.start {
+  all: unset;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  height: 48px;
+  min-width: 200px;
+  padding: 0 24px;
+  border-radius: 24px;
+  font-weight: bold;
+  color: var(--accent);
+  text-transform: uppercase;
+  background-color: var(--accent-bg);
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+  @include hideTransition {
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.tomatoBottom {
+  position: absolute;
+  left: calc(50% - 100px);
+  bottom: -24px;
+  z-index: -1;
+
+  @include hideTransition;
+}
+
+.floatWrapper {
+  pointer-events: none;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity 0.5s;
+
+  button {
+    transform: translateY(calc(100% + 16px));
+    transition: all 0.25s;
+  }
+
+  &[data-show] {
+    pointer-events: all;
+    opacity: 1;
+
+    button {
+      transform: translateY(0);
+    }
+  }
+}

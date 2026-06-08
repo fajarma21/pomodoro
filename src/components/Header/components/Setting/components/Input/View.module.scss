@@ -1,0 +1,30 @@
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+
+  .inputGroup {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    .buttonModifier {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--bg-grad-2);
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.25;
+      }
+    }
+
+    input {
+      font-family: inherit;
+      text-align: center;
+      width: 50px;
+      border: none;
+    }
+  }
+}

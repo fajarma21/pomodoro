@@ -1,0 +1,15 @@
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.footer {
+  position: relative;
+  margin: 24px 0 16px;
+  width: 100%;
+  animation: appear 0.5s;
+}

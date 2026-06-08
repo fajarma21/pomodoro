@@ -1,0 +1,45 @@
+@use '@/styles/animation.scss' as animation;
+
+.phase {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px;
+  @include animation.appearFromTop;
+  .left {
+    text-align: left;
+    .title {
+      line-height: 16px;
+      margin: 0 0 4px;
+    }
+    .duration {
+      font-size: 0.8rem;
+    }
+  }
+
+  .right {
+    text-align: right;
+    .dots {
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      gap: 8px;
+      margin-bottom: 4px;
+      div {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 1px solid white;
+        opacity: 0.8;
+        transition: 0.25s background-color;
+
+        &[data-filled='true'] {
+          background-color: white;
+        }
+      }
+    }
+    .progress {
+      font-size: 0.8rem;
+      margin: 0;
+    }
+  }
+}
