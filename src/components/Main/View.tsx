@@ -9,9 +9,6 @@ import { changeFavicon, getSequence } from './View.helpers';
 import Footer from './components/Footer';
 import useConfigStore from '@/stores/config';
 
-// TODO: make button fixed on bottom
-// TODO: PWA
-
 const Main = () => {
   const config = useConfigStore((state) => state.config);
 
