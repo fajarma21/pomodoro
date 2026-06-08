@@ -3,14 +3,13 @@
   --accent: #525252;
   --accent-bg: #ffd039;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
   font:
     14px ui-monospace,
     Consolas,
-    monospace;
+    monospace,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
   letter-spacing: 0.18px;
   color: var(--text);
   font-synthesis: none;
@@ -21,18 +20,21 @@
 
 :root,
 [data-theme='focus'] {
+  --bg-grad: #940815;
   .bg1 {
     opacity: 1;
   }
 }
 
 [data-theme='break'] {
+  --bg-grad: #d53032;
   .bg2 {
     opacity: 1;
   }
 }
 
 [data-theme='long-break'] {
+  --bg-grad: #2e111d;
   .bg3 {
     opacity: 1;
   }

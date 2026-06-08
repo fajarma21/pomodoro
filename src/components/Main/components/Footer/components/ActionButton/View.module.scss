@@ -1,3 +1,5 @@
+@use '@/styles/index.scss' as styles;
+
 @keyframes fadeInd {
   0% {
     opacity: 0;
@@ -32,8 +34,7 @@
   color: var(--accent);
   text-transform: uppercase;
   background-color: var(--accent-bg);
-  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-
+  @include styles.shadow;
   @include hideTransition {
     pointer-events: none;
   }
