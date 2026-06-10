@@ -11,6 +11,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
+        id: '/pomodoro',
         name: 'Pomodoro Timer',
         short_name: 'Pomodoro',
         description: 'A simple Pomodoro timer to boost your productivity.',
@@ -21,6 +22,20 @@ export default defineConfig({
             src: '/pomodoro/favicon-144.png',
             sizes: '144x144',
             type: 'image/png',
+          },
+        ],
+        screenshots: [
+          {
+            src: '/pomodoro/mobile.png',
+            sizes: '405x720',
+            type: 'image/png',
+            form_factor: 'narrow',
+          },
+          {
+            src: '/pomodoro/desktop.png',
+            sizes: '1303x720',
+            type: 'image/png',
+            form_factor: 'wide',
           },
         ],
       },
