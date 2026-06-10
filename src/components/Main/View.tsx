@@ -20,9 +20,11 @@ const Main = () => {
   const phaseData = sequence[phase];
   const isFinished = phase >= sequence.length - 1;
 
-  const dingRef = useRef(new Audio(dingSound));
+  const dingRef = useRef<HTMLAudioElement>(null);
 
   const handleStart = () => {
+    if (!dingRef.current) dingRef.current = new Audio(dingSound);
+
     setStartTime(Date.now());
 
     changeFavicon('favicon-run.png');
@@ -34,10 +36,14 @@ const Main = () => {
   };
 
   const handleFinished = useCallback(() => {
+    if (dingRef.current) {
+      dingRef.current.play().catch((error) => {
+        console.error('Playback failed:', error);
+      });
+    }
+
     setPhase((prev) => prev + 1);
     setStartTime(0);
-
-    dingRef.current.play();
 
     const nextPhase = sequence[phase + 1];
     let theme = 'focus';

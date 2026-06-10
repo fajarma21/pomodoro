@@ -2,12 +2,19 @@ import focusImg from '@/assets/illustrations/focus.png';
 import shortBreakImg from '@/assets/illustrations/short-break.png';
 import longBreakImg from '@/assets/illustrations/long-break.png';
 import finishedImg from '@/assets/illustrations/finished.png';
+import { MAX_DURATION, MIN_DURATION } from '@/constants';
 import isEven from '@/helpers/isEven';
 import type { ConfigData } from '@/types';
 
 export const changeFavicon = (url: string) => {
   const favicon = document.getElementById('favicon') as HTMLLinkElement;
   if (favicon) favicon.href = window.location.pathname + url;
+};
+
+const durationCheck = (duration: number) => {
+  if (duration < MIN_DURATION) return MIN_DURATION;
+  if (duration > MAX_DURATION) return MAX_DURATION;
+  return duration;
 };
 
 export const getSequence = ({
@@ -33,7 +40,7 @@ export const getSequence = ({
         title: 'Long Break',
         button: 'Start Long Break',
         description: 'Step away completely to fully recharge your energy.',
-        duration: longBreak,
+        duration: durationCheck(longBreak),
         illustration: longBreakImg,
       };
     if (isEven(index))
@@ -43,7 +50,7 @@ export const getSequence = ({
         title: 'Focus Session',
         button: 'Start Focus',
         description: `Your best work happens when you commit to the zone.`,
-        duration: focus,
+        duration: durationCheck(focus),
         illustration: focusImg,
       };
     return {
@@ -51,7 +58,7 @@ export const getSequence = ({
       title: 'Short Break',
       button: 'Start Short Break',
       description: 'Breathe deeply, and refresh your mind for a moment',
-      duration: breakTime,
+      duration: durationCheck(breakTime),
       illustration: shortBreakImg,
     };
   });

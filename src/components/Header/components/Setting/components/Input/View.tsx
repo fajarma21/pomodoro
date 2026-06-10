@@ -1,14 +1,15 @@
 import { useState, type ChangeEvent, type MouseEvent } from 'react';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
 
+import { MAX_DURATION, MIN_DURATION } from '@/constants';
 import Button from '@/components/Button';
 
 import css from './View.module.scss';
 import type { InputProps } from './View.types';
 
 const Input = ({
-  max = 100,
-  min = 5,
+  max = MAX_DURATION,
+  min = MIN_DURATION,
   step = 5,
   title,
   value,

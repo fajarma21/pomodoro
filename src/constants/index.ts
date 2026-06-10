@@ -9,3 +9,6 @@ export const DEFAULT_CONFIG = {
   longBreak: DEFAULT_LONG_BREAK_TIME,
   focusTotal: DEFAULT_FOCUS_TOTAL,
 };
+
+export const MAX_DURATION = 100;
+export const MIN_DURATION = 5;
