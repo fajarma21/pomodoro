@@ -1,13 +1,14 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import dingSound from '@/assets/ding.mp3';
+import useNoSleep from '@/hooks/useNoSleep';
+import useBell from '@/hooks/useBell';
+import useConfigStore from '@/stores/config';
 
-import css from './View.module.scss';
 import Clock from './components/Clock';
 import Phase from './components/Phase';
-import { changeFavicon, getSequence } from './View.helpers';
 import Footer from './components/Footer';
-import useConfigStore from '@/stores/config';
+import { changeFavicon, getSequence } from './View.helpers';
+import css from './View.module.scss';
 
 const Main = () => {
   const config = useConfigStore((state) => state.config);
@@ -20,15 +21,16 @@ const Main = () => {
   const phaseData = sequence[phase];
   const isFinished = phase >= sequence.length - 1;
 
-  const dingRef = useRef<HTMLAudioElement>(null);
+  const { initateBell, playBell } = useBell();
+  const { enableNoSleep, disableNoSleep } = useNoSleep();
 
-  const handleStart = () => {
-    if (!dingRef.current) dingRef.current = new Audio(dingSound);
-
+  const handleStart = useCallback(() => {
     setStartTime(Date.now());
 
+    enableNoSleep();
+    initateBell();
     changeFavicon('favicon-run.png');
-  };
+  }, [enableNoSleep, initateBell]);
 
   const handleBackToStart = () => {
     setPhase(0);
@@ -36,14 +38,8 @@ const Main = () => {
   };
 
   const handleFinished = useCallback(() => {
-    if (dingRef.current) {
-      dingRef.current.play().catch((error) => {
-        console.error('Playback failed:', error);
-      });
-    }
-
-    setPhase((prev) => prev + 1);
-    setStartTime(0);
+    disableNoSleep();
+    playBell();
 
     const nextPhase = sequence[phase + 1];
     let theme = 'focus';
@@ -53,12 +49,15 @@ const Main = () => {
     } else changeFavicon('favicon.png');
 
     document.documentElement.setAttribute('data-theme', theme);
-  }, [phase, sequence]);
+
+    setStartTime(0);
+    setPhase((prev) => prev + 1);
+  }, [disableNoSleep, phase, playBell, sequence]);
 
   const handleClickStart = useCallback(() => {
     if (isFinished) handleBackToStart();
     else handleStart();
-  }, [isFinished]);
+  }, [handleStart, isFinished]);
 
   const handleSpacePress = useCallback(
     (e: KeyboardEvent) => {
