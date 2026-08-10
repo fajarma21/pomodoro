@@ -39,6 +39,13 @@ export default defineConfig({
           },
         ],
       },
+      workbox: {
+        globPatterns: [
+          'index.html*',
+          'registerSW.js*',
+          'assets/*.{js,css,html,ico,png,svg,jpg,jpeg,webp}',
+        ],
+      },
     }),
   ],
   resolve: {
